@@ -1,0 +1,2 @@
+This is a repo creating to learn the basics of networking. I am planning to work bottom-up, starting from tcp, udp and then going up and implementing an http server and increasing the difficulty by creating some challenging software from scratch. 
+I am going to start with python at first, so that my whole focus is in the networking area. Once i feel a little comfortable, I'll rewrite the whole thing in C.
