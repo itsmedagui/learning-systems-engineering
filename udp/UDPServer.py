@@ -1,5 +1,12 @@
 import socket
 
+def countLetters(message) : 
+    count = 0
+    for letter in message : 
+        if letter == "s" :
+            count += 1
+
+    return count
 
 serverPort = 12000
 
@@ -20,7 +27,7 @@ while True :
     
     # never forget to decode before doing any action
     # and encoding before sending it  
-    modifiedMessage = message.decode().upper()
+    modifiedMessage = f"There is {countLetters(message.decode())} S letters in your sentence"
 
     # this attaches the client address to the message and sends the resulting packet to the server's socket
     # letting udp do its job to transport it to clientAddress
