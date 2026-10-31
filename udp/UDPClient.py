@@ -11,24 +11,27 @@ serverPort = 12000
 # we are not specifying a port number for the client socket that we just created. the os does this for us.
 clientSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
-# this prints the input question in the terminal and grabs whatever the client enters into the message variable to use later
-message = input("Input lowercase sentence: ")
+while True :
+    # this prints the input question in the terminal and grabs whatever the client enters into the message variable to use later
+    message = input("Input lowercase sentence: ")
 
-# this is pretty self explanitory. it takes the message, encode it and then send to serverName:serverPort
-# encode it: convert the message from string type to byte type.
-# TODO: i need to understand how does the message encoding happen.
-# the method sendto attaches the destination address to the message and sends the resulting packet into the process's socket: clientSocket
-clientSocket.sendto(message.encode(), (serverName, serverPort))
+    # this is pretty self explanitory. it takes the message, encode it and then send to serverName:serverPort
+    # encode it: convert the message from string type to byte type.
+    # TODO: i need to understand how does the message encoding happen.
+    # the method sendto attaches the destination address to the message and sends the resulting packet into the process's socket: clientSocket
+    clientSocket.sendto(message.encode(), (serverName, serverPort))
 
-# when a packet arrives from the server, we put the packet data into modifiedMessage and the packet's source address into serverAddress
-# we don't need to capture the server address as we already know it, but recvfrom provides it anyway. we can just put a _ in there
-# the 2048 is the buffer size
-# TODO : look what does a buffer size do, and its role in sending a packet with udp 
-modifiedMessage, serverAddress = clientSocket.recvfrom(2048)
+    # when a packet arrives from the server, we put the packet data into modifiedMessage and the packet's source address into serverAddress
+    # we don't need to capture the server address as we already know it, but recvfrom provides it anyway. we can just put a _ in there
+    # the 2048 is the buffer size
+    # TODO : look what does a buffer size do, and its role in sending a packet with udp 
+    modifiedMessage, serverAddress = clientSocket.recvfrom(2048)
 
-# now we print the message received from the server after decoding it: converting it from bytes to string
-print(modifiedMessage.decode())
+    # now we print the message received from the server after decoding it: converting it from bytes to string
+    print(modifiedMessage.decode())
 
-# this line closes the socket, then the process terminates
-# it is important so that a process is not left hanging using resources for nothing
+    # this line closes the socket, then the process terminates
+    # it is important so that a process is not left hanging using resources for nothing
+
+# i think this has no reason to stay here since the client closes the socket manually
 clientSocket.close()
