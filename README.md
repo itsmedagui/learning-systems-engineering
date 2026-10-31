@@ -1,6 +1,8 @@
 This is a repo creating to learn the basics of networking. I am planning to work bottom-up, starting from tcp, udp and then going up and implementing an http server and increasing the difficulty by creating some challenging software from scratch. 
 I am going to start with python at first, so that my whole focus is in the networking area. Once i feel a little comfortable, I'll rewrite the whole thing in C.
 
+====================== UDP =======================================================
+
 I just finished creating a server and client that use udp to transport the packets.
 It is an exageration to call them server and client but they do their job simply and great for learning.
 so first i started with the client. apart from importing the necessary socket module, i created a client socket that accepts two params, the first one is the family, i used AF_INET which is IPv4, and the second is the type, which in this case is udp: SOCK_DGRAM.
