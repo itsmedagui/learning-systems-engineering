@@ -15,7 +15,7 @@ sentence : str = input("Input lowercase sentence: ")
 # all we need is to send the data and receive it
 clientSocket.send(sentence.encode())
 
-modifiedSentence : bytes = clientSocket.recvfrom(1024)
+modifiedSentence : bytes = clientSocket.recv(1024)
 
 print(f"From Server: {modifiedSentence.decode()}")
 
