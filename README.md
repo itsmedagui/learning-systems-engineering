@@ -21,3 +21,12 @@ we process the message and then we send the processed message back to the client
 Notice how the client address is useful here in comparison to the client one where we can just ignore it as we already have the server's address. 
 
 TODO: I still got one problem to understand: that 2048 in the buffer? how does that work? 
+
+====================== TCP =======================================================
+
+creating a client and server that use tcp as the transport protocol is a little tricky and not as straightforward as udp.
+tcp is a connection oriented protocol, that means before the client and the server start sending data to each other they first need to handshake and establish a tcp connection. when creating the tcp connection we associate with it the client and server addresses ( ip address and the port number), when the tcp connection is established when one end wants to send data to another, it just drops the data into the socket and the tcp does its job, without the need to specify the recepient address.
+
+
+creating a tcp connection is a little more complicated than udp. first the client initiates a tcp connection to the server. it is done in the client by creating a tcp socket. when the client creates its socket, it specify the address of the welcoming socket of the server and the port number of the socket. after creating its socket, the client initiates a three-way handshake to the server. during that handshake, the client knocks on the socket of the server process and then the server creates a new socket particular to that client. in the TCPServer case, the welcoming socket is the serverSocket and the newly socket dedicated to the client is the connectionSocket.
+the welcoming is the initial point of contact of all the clients that want to contact the server (port 12000), and the connection socket is newly created for each client.
